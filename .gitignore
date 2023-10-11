@@ -129,5 +129,5 @@ db.sqlite3
 db copy.sqlite3
 static/
 
-# Add agaiin for course purpose
+# Add again for course purpose - Isso não é comum - isso deixa base de dados publica
 !db.sqlite3
