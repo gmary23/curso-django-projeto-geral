@@ -16,7 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse
+
+#HTTP REQUEST(cliente pede) 
+# recebeu o pedido do cliente
+def my_view(request): # foi criado essa função e colocou uma request
+    return HttpResponse('UMA LINDA STRING') # foi respondido ao cliente
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # aqui o cliente pediu 
+    path('sobre/', my_view) #  uma path deve receber uma ROTA (caminho) e uma FUNÇÃO.
 ]
