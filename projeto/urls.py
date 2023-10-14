@@ -20,11 +20,20 @@ from django.http import HttpResponse
 
 #HTTP REQUEST(cliente pede) 
 # recebeu o pedido do cliente
-def my_view(request): # foi criado essa função e colocou uma request
-    return HttpResponse('UMA LINDA STRING') # foi respondido ao cliente
+def home(request): # foi criado essa função e colocou uma request
+    return HttpResponse('HOME') # foi respondido ao cliente
+
+def sobre(request): # foi criado essa função e colocou uma request
+    return HttpResponse('SOBRE')
+
+def contato(request): # foi criado essa função e colocou uma request
+    return HttpResponse('CONTATO')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # aqui o cliente pediu 
-    path('sobre/', my_view) #  uma path deve receber uma ROTA (caminho) e uma FUNÇÃO.
+    path('', home), # esse vazio entre aspas significa que vai pra página principal.
+    path('sobre/', sobre),#  uma path recebe uma ROTA (caminho) e uma FUNÇÃO.
+    path('contato/', contato),
+
 ]
