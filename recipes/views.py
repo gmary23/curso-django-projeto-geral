@@ -15,4 +15,6 @@ def home(request):  # foi criado essa função e colocou uma request
 
 
 def recipe(request, id):
-    return render(request, "recipes/pages/home.html", context={"name": "Geila Azevedo"})
+    return render(
+        request, "recipes/pages/recipe-view.html", context={"name": "Geila Azevedo"}
+    )
