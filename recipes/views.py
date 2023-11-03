@@ -1,20 +1,22 @@
 from django.shortcuts import render
+from utils.recipes.factory import make_recipe
 
 
-# Create your views here.
-# HTTP REQUEST(cliente pede)
-# recebeu o pedido do cliente
-def home(request):  # foi criado essa função e colocou uma request
+def home(request):
     return render(
         request,
         "recipes/pages/home.html",
         context={
-            "name": "Geila Martins",
+            "recipes": [make_recipe() for _ in range(12)],
         },
-    )  # direciona para a home.html que fica dentro de templates do app recipes
+    )
 
 
 def recipe(request, id):
     return render(
-        request, "recipes/pages/recipe-view.html", context={"name": "Geila Azevedo"}
+        request,
+        "recipes/pages/recipe-view.html",
+        context={
+            "recipe": make_recipe(),
+        },
     )
