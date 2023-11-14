@@ -5,6 +5,12 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=65)
 
+    def __str__(
+        self,
+    ):  # altera o nome Category object para o nome correto da categoria que foi criada
+        return self.name
+
+
 class Recipe(models.Model):
     title = models.CharField(max_length=65)
     description = models.CharField(max_length=165)
@@ -15,16 +21,13 @@ class Recipe(models.Model):
     servings_unit = models.CharField(max_length=65)
     preparation_steps = models.TextField()
     preparation_steps_is_html = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True) # Esse auto_now_add gera uma data no momento da criação
-    updated_at = models.DateField(auto_now=True)# também é de data, mas só é chamado quando o registro é chamado (update)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )  # Esse auto_now_add gera uma data no momento da criação
+    updated_at = models.DateField(
+        auto_now=True
+    )  # também é de data, mas só é chamado quando o registro é chamado (update)
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to='recipes/covers/%Y/m/%d')
-    category =models.ForeignKey(
-        Category, on_delete=models.SET_NULL, null=True
-    )
-    author =models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True
-    )
-
-
-
+    cover = models.ImageField(upload_to="recipes/covers/%Y/m/%d")
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
