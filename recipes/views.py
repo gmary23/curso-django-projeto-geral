@@ -4,7 +4,7 @@ from .models import Recipe
 
 
 def home(request):
-    recipes = Recipe.objects.all().order_by("-id")  # aplicativo
+    recipes = Recipe.objects.filter(is_published=True).order_by("-id")  # aplicativo
     return render(
         request,
         "recipes/pages/home.html",
@@ -15,12 +15,15 @@ def home(request):
 
 
 def category(request, category_id):
-    recipes = Recipe.objects.filter(category__id=category__id).order_by(
+    recipes = Recipe.objects.filter(
+        category__id=category_id,
+        is_published=True,
+    ).order_by(
         "-id"
     )  # aplicativo
     return render(
         request,
-        "recipes/pages/home.html",
+        "recipes/pages/category.html",
         context={
             "recipes": recipes,  # nome das receitas que tem cadastradas
         },

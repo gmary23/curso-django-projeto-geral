@@ -23,6 +23,7 @@
                     {{ recipe.author.username }}
                {% endif %}
             </span>
+            {% if recipe.category is not None %}
             <span class="recipe-author-item">
                 <i class="fas fa-calendar-alt"></i>
                 {{ recipe.created_at|date:"d/m/Y" }} às {{ recipe.created_at|date:"H:i" }}
@@ -33,6 +34,7 @@
                     <span>{{ recipe.category.name }}</span>
                 </a>
             </span>
+            {% endif %}
         </div>
 
         <div class="recipe-content">

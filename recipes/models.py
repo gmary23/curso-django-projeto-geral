@@ -29,9 +29,15 @@ class Recipe(models.Model):
     )  # também é de data, mas só é chamado quando o registro é chamado (update)
     is_published = models.BooleanField(default=False)
     cover = models.ImageField(
-        upload_to="recipes/covers/%Y/%m/%d", blank=True, default=" "
-    )
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+        upload_to="recipes/covers/%Y/%m/%d", blank=True, default=""
+    )  # esse black=True e default vazio diz que na imagem pode não ter nada
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        default=None,
+    )  # blank=True --> permite que no formulário seja em branco, default=None
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
