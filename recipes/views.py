@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from utils.recipes.factory import make_recipe
 from .models import Recipe
+from django.http import Http404
 
 
 def home(request):
@@ -18,14 +19,16 @@ def category(request, category_id):
     recipes = Recipe.objects.filter(
         category__id=category_id,
         is_published=True,
-    ).order_by(
-        "-id"
-    )  # aplicativo
+    ).order_by("-id")
+    if not recipes:
+        raise Http404("Essa página não existe")
+
     return render(
         request,
         "recipes/pages/category.html",
         context={
             "recipes": recipes,  # nome das receitas que tem cadastradas
+            "title": f"{recipes.first().category.name} - Category |",
         },
     )
 
