@@ -5,7 +5,8 @@ from django.shortcuts import get_list_or_404, render
 
 
 def home(request):
-    recipes = Recipe.objects.filter(is_published=True).order_by("-id")  # aplicativo
+    recipes = Recipe.objects.filter(is_published=True).order_by("-id")
+
     return render(
         request,
         "recipes/pages/home.html",
