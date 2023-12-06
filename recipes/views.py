@@ -1,17 +1,18 @@
-from django.shortcuts import render
-from utils.recipes.factory import make_recipe
-from .models import Recipe
-from django.shortcuts import get_list_or_404, render
+from django.shortcuts import get_list_or_404, get_object_or_404, render
+
+from recipes.models import Recipe
 
 
 def home(request):
-    recipes = Recipe.objects.filter(is_published=True).order_by("-id")
+    recipes = Recipe.objects.filter(
+        is_published=True,
+    ).order_by("-id")
 
     return render(
         request,
         "recipes/pages/home.html",
         context={
-            "recipes": recipes,  # nome das receitas que tem cadastradas
+            "recipes": recipes,
         },
     )
 
@@ -28,18 +29,24 @@ def category(request, category_id):
         request,
         "recipes/pages/category.html",
         context={
-            "recipes": recipes,  # nome das receitas que tem cadastradas
-            "title": f"{recipes[0].category.name} - Category |",
+            "recipes": recipes,
+            "title": f"{recipes[0].category.name} - Category | ",
         },
     )
 
 
 def recipe(request, id):
+    recipe = get_object_or_404(
+        Recipe,
+        pk=id,
+        is_published=True,
+    )
+
     return render(
         request,
         "recipes/pages/recipe-view.html",
         context={
-            "recipe": make_recipe(),
+            "recipe": recipe,
             "is_detail_page": True,
         },
     )
