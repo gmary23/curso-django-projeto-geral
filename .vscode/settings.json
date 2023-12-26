@@ -1,6 +1,9 @@
 {
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
-    },
-    "python.formatting.provider": "none"
+    "window.zoomLevel": 0,
+    "window.zoomLevel": 0,
+    "editor.fontSize": 24,
+    "python.languageServer": "Pylance", // ms-python.vscode-pylance
+    "python.testing.unittestEnabled": false, // ms-python.python
+  
+    
 }
