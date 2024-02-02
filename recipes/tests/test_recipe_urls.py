@@ -1,5 +1,6 @@
 from django.test import TestCase
-from django.urls import reverse
+# reverse - é uma função que gera dinamicamente uma URL com base no padrão de URL nomeado # noqa
+from django.urls import reverse # noqa
 
 class RecipeURLsTest(TestCase):  # noqa
     def test_recipe_home_url_is_correct(self):
